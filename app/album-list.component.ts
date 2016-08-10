@@ -18,6 +18,7 @@ import { CartPipe } from './cart.pipe';
     (click)="albumClicked(currentAlbum)"
     [class.selected]="currentAlbum === selectedAlbum"
    [album]="currentAlbum"></album-display>
+   <cart-display> </cart-display>
   `
 })
 
@@ -25,16 +26,20 @@ export class AlbumListComponent {
   public albumList: Album[];
   public onAlbumSelect: EventEmitter<Album>;
   public selectedAlbum: Album;
+  public cartTotal: number = 0;
   public filterCart: string = "inventory";
   constructor() {
     this.onAlbumSelect = new EventEmitter();
   }
   albumClicked(clickedAlbum: Album): void {
     this.selectedAlbum = clickedAlbum;
+    this.cartTotal += clickedAlbum.price;
+    console.log(this.cartTotal);
+
     // console.log(this.selectedAlbum);
 
     this.onAlbumSelect.emit(clickedAlbum);
-    console.log(clickedAlbum);
+    // console.log(clickedAlbum.price);
   }
   createAlbum(name: string, artist: string, price: number, genre: string, id: number): void {
     this.albumList.push(

@@ -1,4 +1,4 @@
-import { Component } from 'angular2/core';
+import { Component, EventEmitter } from 'angular2/core';
 import { Album } from './album.model';
 
 @Component({
@@ -18,7 +18,13 @@ import { Album } from './album.model';
 
 export class AlbumDisplayComponent {
   public album: Album;
+  // public cartTotal: number = 0;
   toggleCart(setState: boolean){
     this.album.cart = setState;
+    // console.log(this.album.price);
   }
+  // if (toggleCart = true) {
+  //   this.cartTotal += this.album.price;
+  //   console.log(this.cartTotal);
+  // }
 }
