@@ -5,7 +5,10 @@ import { Album } from './album.model';
   selector: 'album-display',
   inputs: ['album'],
   template: `
-  <h3>{{ album.name }}</h3>
+    <h1>{{ album.name }}</h1>
+    <h3>{{ album.artist }}</h3>
+    <h3>{{ album.price }}</h3>
+    <h3>{{ album.genre }}</h3>
   `
 })
 

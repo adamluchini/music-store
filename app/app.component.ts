@@ -9,7 +9,7 @@ import { AlbumDisplayComponent } from './album-display.component';
   directives: [AlbumListComponent],
   template: `
     <div class="container">
-      <h1>Album List</h1>
+      <h1>Album List:</h1>
       <album-list
       [albumList]="albums"></album-list>
     </div>
@@ -21,7 +21,7 @@ export class AppComponent {
   constructor(){
     this.albums = [
       new Album('Spice World', 'Spice Girls', 5.99, 'Pop', 0),
-      new Album('Spice World', 'Spice Girls', 5.99, 'Pop', 1)
+      new Album('Spice World', 'Spice Girls', 5.99, 'Rock', 1)
     ];
   }
 
