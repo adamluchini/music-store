@@ -16,15 +16,9 @@ import { Album } from './album.model';
   `
 })
 
-export class AlbumDisplayComponent {
+export class AlbumDisplayComponent{
   public album: Album;
-  // public cartTotal: number = 0;
   toggleCart(setState: boolean){
     this.album.cart = setState;
-    // console.log(this.album.price);
   }
-  // if (toggleCart = true) {
-  //   this.cartTotal += this.album.price;
-  //   console.log(this.cartTotal);
-  // }
 }

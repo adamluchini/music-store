@@ -21,7 +21,9 @@ export class AppComponent {
   constructor(){
     this.albums = [
       new Album('Spice World', 'Spice Girls', 5.99, 'Pop', 0),
-      new Album('Spice World', 'Spice Girls', 5.99, 'Rock', 1)
+      new Album('Weezer', 'Pinkerton', 5.99, 'Rock', 1),
+      new Album('OK Computer', 'RadioHead', 9.99, 'Rock', 2),
+      new Album('Teenage Dream', 'Katy Perry', 7.99, 'Pop', 3)
     ];
   }
 
