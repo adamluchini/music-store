@@ -3,12 +3,13 @@ import { Album } from './album.model';
 import { AlbumDisplayComponent } from './album-display.component';
 import { CartPipe } from './cart.pipe';
 import { GenrePipe } from './genre.pipe';
+import { ArtistPipe } from './artist.pipe';
 
 @Component({
   selector: 'album-list',
   inputs: ['albumList'],
   outputs: ['onAlbumSelect'],
-  pipes: [CartPipe, GenrePipe],
+  pipes: [CartPipe, GenrePipe, ArtistPipe],
   directives: [AlbumDisplayComponent],
   template: `
   <select (change)="onChange($event.target.value)" class="filter">
@@ -20,7 +21,14 @@ import { GenrePipe } from './genre.pipe';
     <option value="Pop">Pop</option>
     <option value="Rock">Rock</option>
   </select>
-  <album-display *ngFor = "#currentAlbum of albumList | genre:filterGenre | cart:filterCart" [album]="currentAlbum"></album-display>
+  <select (change)="onChange3($event.target.value)">
+    <option value="all" selected="selected">All Artists</option>
+    <option value="Spice Girls">Spice Girls</option>
+    <option value="RadioHead">RadioHead</option>
+    <option value="Pinkerton">Pinkerton</option>
+    <option value="Katy Perry">Katy Perry</option>
+  </select>
+  <album-display *ngFor = "#currentAlbum of albumList | genre:filterGenre | artist:filterArtist | cart:filterCart" [album]="currentAlbum"></album-display>
   `
 })
 
@@ -30,6 +38,7 @@ export class AlbumListComponent {
   public selectedAlbum: Album;
   public cartTotal: number = 0;
   public filterGenre: string = "all";
+  public filterArtist: string = "all";
   public filterCart: string = "all";
   constructor() {
     this.onAlbumSelect = new EventEmitter();
@@ -51,5 +60,8 @@ export class AlbumListComponent {
   }
   onChange2(filterOption) {
     this.filterGenre = filterOption;
+  }
+  onChange3(filterOption) {
+    this.filterArtist = filterOption;
   }
 }
