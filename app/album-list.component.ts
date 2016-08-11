@@ -29,9 +29,8 @@ import { ArtistPipe } from './artist.pipe';
     <option value="Katy Perry">Katy Perry</option>
   </select>
   <album-display *ngFor = "#currentAlbum of albumList | genre:filterGenre | artist:filterArtist | cart:filterCart"
-  (click)="albumClicked(currentAlbum)"
   [album]="currentAlbum"></album-display>
-  <h4>Total: {{ albumClicked(albumList) }}</h4>
+  <h4>Total: {{ calculateTotal() }}</h4>
   `
 })
 
@@ -47,12 +46,14 @@ export class AlbumListComponent {
   constructor() {
     this.onAlbumSelect = new EventEmitter();
   }
-  albumClicked(clickedAlbum: Album) {
-    if (clickedAlbum.cart) {
-      this.cartTotal += clickedAlbum.price;
-      console.log(this.cartTotal);
+  calculateTotal() {
+    var total = 0;
+    for(var album of this.albumList) {
+      if (album.cart) {
+        total += album.price;
+      }
     }
-    return this.cartTotal;
+    return total;
   }
   createAlbum(name: string, artist: string, price: number, genre: string, id: number): void {
     this.albumList.push(
